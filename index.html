@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos MercadoLibre</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ebebeb;
+            padding: 20px;
+        }
+
+        .product-list {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-item {
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 16px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+            transition: box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .product-item:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .product-number {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background-color: #5c5c5c;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 1;
+        }
+
+        .product-image {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            background-color: #fff;
+            border-radius: 4px;
+        }
+
+        .cart-button {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .cart-button:hover {
+            background-color: #f5f5f5;
+        }
+
+        .badge-presenting {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background-color: #ffe600;
+            color: #333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            color: #333;
+            font-weight: 400;
+            line-height: 1.35;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-price-old {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: #333;
+            font-weight: 400;
+        }
+
+        .product-discount {
+            font-size: 14px;
+            color: #00a650;
+            font-weight: 600;
+        }
+
+        .product-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            padding: 2px 0;
+        }
+
+        .badge-santander {
+            color: #3483fa;
+            font-weight: 600;
+        }
+
+        .badge-coupon {
+            color: #3483fa;
+            font-weight: 400;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #3483fa;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #2968c8;
+        }
+
+        .btn-secondary {
+            background-color: rgba(65, 137, 230, 0.15);
+            color: #3483fa;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(65, 137, 230, 0.25);
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-list">
+        <!-- Producto 1 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">1</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_792936-MLA79099690677_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+
+        <!-- Producto 2 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">2</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_688621-MLA79099690676_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+
+        <!-- Producto 3 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">3</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_795014-MLA79099690678_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <div class="badge-presenting">Presentando</div>
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+
+        <!-- Producto 4 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">4</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_617949-MLA79099697355_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+
+        <!-- Producto 5 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">5</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_792936-MLA79099690677_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+
+        <!-- Producto 6 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">6</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_688621-MLA79099690676_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+
+        <!-- Producto 7 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">7</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_795014-MLA79099690678_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+
+        <!-- Producto 8 -->
+        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+            <div class="product-image-container">
+                <div class="product-number">8</div>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_617949-MLA79099697355_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <div class="badge-presenting">Presentando</div>
+                <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
+                    <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 6C5 7.65685 6.34315 9 8 9C9.65685 9 11 7.65685 11 6" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <div class="product-price-container">
+                    <span class="product-price-old">$ 111.000</span>
+                    <span class="product-price">$ 99.900</span>
+                    <span class="product-discount">10% OFF</span>
+                </div>
+                <div class="product-badges">
+                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-coupon">
+                        <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
+                            <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
+                            <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
+                        </svg>
+                        Cupón 20% OFF
+                    </span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" onclick="event.preventDefault(); alert('Comprar ahora');">Comprar ahora</button>
+                    <button class="btn btn-secondary" onclick="event.preventDefault(); alert('Agregado al carrito');">Agregar al carrito</button>
+                </div>
+            </div>
+        </a>
+    </div>
+</body>
+</html>
