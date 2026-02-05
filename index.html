@@ -14,21 +14,21 @@
         body {
             font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: #ebebeb;
-            padding: 20px;
+            padding: 12px;
         }
 
         .product-list {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .product-item {
             background-color: #fff;
-            border-radius: 6px;
-            padding: 16px;
-            margin-bottom: 16px;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
             display: flex;
-            gap: 16px;
+            gap: 10px;
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
             transition: box-shadow 0.3s ease;
             text-decoration: none;
@@ -46,24 +46,24 @@
 
         .product-number {
             position: absolute;
-            top: -8px;
-            left: -8px;
+            top: -6px;
+            left: -6px;
             background-color: #5c5c5c;
             color: #fff;
-            width: 28px;
-            height: 28px;
-            border-radius: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 11px;
             z-index: 1;
         }
 
         .product-image {
-            width: 140px;
-            height: 140px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             background-color: #fff;
             border-radius: 4px;
@@ -71,13 +71,13 @@
 
         .cart-button {
             position: absolute;
-            bottom: 8px;
-            right: 8px;
+            bottom: 4px;
+            right: 4px;
             background-color: #fff;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
             cursor: pointer;
             display: flex;
@@ -92,13 +92,13 @@
 
         .badge-presenting {
             position: absolute;
-            bottom: 8px;
-            left: 8px;
+            bottom: 4px;
+            left: 4px;
             background-color: #ffe600;
             color: #333;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 10px;
             font-weight: 600;
         }
 
@@ -106,14 +106,14 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 5px;
         }
 
         .product-title {
-            font-size: 16px;
+            font-size: 13px;
             color: #333;
             font-weight: 400;
-            line-height: 1.35;
+            line-height: 1.3;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -124,23 +124,24 @@
         .product-price-container {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
         .product-price-old {
-            font-size: 14px;
+            font-size: 11px;
             color: #999;
             text-decoration: line-through;
         }
 
         .product-price {
-            font-size: 24px;
+            font-size: 18px;
             color: #333;
             font-weight: 400;
         }
 
         .product-discount {
-            font-size: 14px;
+            font-size: 11px;
             color: #00a650;
             font-weight: 600;
         }
@@ -148,15 +149,15 @@
         .product-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            font-size: 13px;
-            padding: 2px 0;
+            gap: 3px;
+            font-size: 11px;
+            padding: 1px 0;
         }
 
         .badge-santander {
@@ -171,14 +172,14 @@
 
         .product-actions {
             display: flex;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 5px;
         }
 
         .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 14px;
+            padding: 7px 14px;
+            border-radius: 4px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             border: none;
@@ -205,19 +206,19 @@
         }
 
         .icon {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             display: inline-block;
         }
     </style>
 </head>
 <body>
     <div class="product-list">
-        <!-- Producto 1 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 1 - iPhone 14 -->
+        <a href="https://www.mercadolibre.com.ar/apple-iphone-14-128-gb/p/MLA19839058" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">1</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_792936-MLA79099690677_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_653524-MLA69459850539_052023-F.webp" alt="Apple iPhone 14 128 GB" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -226,11 +227,11 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Apple iPhone 14 (128 GB) - Medianoche</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 1.299.999</span>
+                    <span class="product-price">$ 1.099.999</span>
+                    <span class="product-discount">15% OFF</span>
                 </div>
                 <div class="product-badges">
                     <span class="badge badge-coupon">
@@ -239,7 +240,7 @@
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        Cupón 10% OFF
                     </span>
                 </div>
                 <div class="product-actions">
@@ -249,11 +250,11 @@
             </div>
         </a>
 
-        <!-- Producto 2 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 2 - Samsung Galaxy S24 -->
+        <a href="https://www.mercadolibre.com.ar/samsung-galaxy-s24/p/MLA1039976090" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">2</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_688621-MLA79099690676_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_934830-MLA73683265949_122023-F.webp" alt="Samsung Galaxy S24" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -262,21 +263,21 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Samsung Galaxy S24 5G 256GB Onyx Black</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 1.199.999</span>
+                    <span class="product-price">$ 999.999</span>
+                    <span class="product-discount">17% OFF</span>
                 </div>
                 <div class="product-badges">
-                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-santander">12 cuotas sin interés</span>
                     <span class="badge badge-coupon">
                         <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        Cupón 5% OFF
                     </span>
                 </div>
                 <div class="product-actions">
@@ -286,11 +287,11 @@
             </div>
         </a>
 
-        <!-- Producto 3 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 3 - Notebook Lenovo -->
+        <a href="https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-3/p/MLA19058932" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">3</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_795014-MLA79099690678_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_682171-MLU69733188248_052023-F.webp" alt="Notebook Lenovo IdeaPad 3" class="product-image">
                 <div class="badge-presenting">Presentando</div>
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -300,11 +301,11 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Notebook Lenovo IdeaPad 3 Intel Core i5 8GB 256GB SSD</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 899.999</span>
+                    <span class="product-price">$ 749.999</span>
+                    <span class="product-discount">17% OFF</span>
                 </div>
                 <div class="product-badges">
                     <span class="badge badge-santander">10% OFF Santander</span>
@@ -314,7 +315,7 @@
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        Envío gratis
                     </span>
                 </div>
                 <div class="product-actions">
@@ -324,11 +325,11 @@
             </div>
         </a>
 
-        <!-- Producto 4 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 4 - Auriculares Sony -->
+        <a href="https://www.mercadolibre.com.ar/auriculares-sony-wh-1000xm5/p/MLA22977329" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">4</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_617949-MLA79099697355_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_947945-MLA69875414695_062023-F.webp" alt="Auriculares Sony WH-1000XM5" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -337,21 +338,21 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Sony WH-1000XM5 Auriculares Bluetooth con Cancelación de Ruido</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 549.999</span>
+                    <span class="product-price">$ 449.999</span>
+                    <span class="product-discount">18% OFF</span>
                 </div>
                 <div class="product-badges">
-                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-santander">6 cuotas sin interés</span>
                     <span class="badge badge-coupon">
                         <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        Envío gratis
                     </span>
                 </div>
                 <div class="product-actions">
@@ -361,11 +362,11 @@
             </div>
         </a>
 
-        <!-- Producto 5 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 5 - Smart TV Samsung -->
+        <a href="https://www.mercadolibre.com.ar/smart-tv-samsung-crystal-uhd-4k-55/p/MLA18661969" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">5</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_792936-MLA79099690677_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_775590-MLA73449409936_122023-F.webp" alt="Smart TV Samsung Crystal UHD 4K 55" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -374,11 +375,11 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Smart TV Samsung 55" Crystal UHD 4K 55CU7000</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 699.999</span>
+                    <span class="product-price">$ 549.999</span>
+                    <span class="product-discount">21% OFF</span>
                 </div>
                 <div class="product-badges">
                     <span class="badge badge-coupon">
@@ -387,7 +388,7 @@
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        12 cuotas sin interés
                     </span>
                 </div>
                 <div class="product-actions">
@@ -397,11 +398,11 @@
             </div>
         </a>
 
-        <!-- Producto 6 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 6 - PlayStation 5 -->
+        <a href="https://www.mercadolibre.com.ar/consola-sony-playstation-5/p/MLA15983189" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">6</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_688621-MLA79099690676_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_795590-MLA46516512347_062021-F.webp" alt="PlayStation 5" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -410,11 +411,11 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Sony PlayStation 5 Standard Edition 825GB Color Blanco</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 899.999</span>
+                    <span class="product-price">$ 799.999</span>
+                    <span class="product-discount">11% OFF</span>
                 </div>
                 <div class="product-badges">
                     <span class="badge badge-santander">10% OFF Santander</span>
@@ -424,7 +425,7 @@
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        Envío gratis
                     </span>
                 </div>
                 <div class="product-actions">
@@ -434,11 +435,11 @@
             </div>
         </a>
 
-        <!-- Producto 7 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 7 - Apple Watch -->
+        <a href="https://www.mercadolibre.com.ar/apple-watch-series-9/p/MLA26809522" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">7</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_795014-MLA79099690678_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_749149-MLA71783088835_092023-F.webp" alt="Apple Watch Series 9" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -447,21 +448,21 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Apple Watch Series 9 GPS 45mm Midnight Aluminio</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 649.999</span>
+                    <span class="product-price">$ 549.999</span>
+                    <span class="product-discount">15% OFF</span>
                 </div>
                 <div class="product-badges">
-                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-santander">12 cuotas sin interés</span>
                     <span class="badge badge-coupon">
                         <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        Envío gratis
                     </span>
                 </div>
                 <div class="product-actions">
@@ -471,11 +472,11 @@
             </div>
         </a>
 
-        <!-- Producto 8 -->
-        <a href="https://www.mercadolibre.com.ar/zapatillas-adidas-duramo-speed-2-running/p/MLA39928830" class="product-item">
+        <!-- Producto 8 - Tablet Samsung -->
+        <a href="https://www.mercadolibre.com.ar/tablet-samsung-galaxy-tab-s9/p/MLA26612871" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">8</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_617949-MLA79099697355_092024-F.webp" alt="Zapatillas Adidas Duramo Speed 2" class="product-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_932033-MLA71025511802_082023-F.webp" alt="Tablet Samsung Galaxy Tab S9" class="product-image">
                 <div class="badge-presenting">Presentando</div>
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -485,21 +486,21 @@
                 </button>
             </div>
             <div class="product-info">
-                <h2 class="product-title">Duramo Speed 2 Running Shoes Js4414...</h2>
+                <h2 class="product-title">Samsung Galaxy Tab S9 11" 128GB WiFi + S Pen Graphite</h2>
                 <div class="product-price-container">
-                    <span class="product-price-old">$ 111.000</span>
-                    <span class="product-price">$ 99.900</span>
-                    <span class="product-discount">10% OFF</span>
+                    <span class="product-price-old">$ 899.999</span>
+                    <span class="product-price">$ 749.999</span>
+                    <span class="product-discount">17% OFF</span>
                 </div>
                 <div class="product-badges">
-                    <span class="badge badge-santander">10% OFF Santander</span>
+                    <span class="badge badge-santander">18 cuotas sin interés</span>
                     <span class="badge badge-coupon">
                         <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 4H14V6H2V4Z" fill="#3483fa"/>
                             <path d="M2 8H14V10H2V8Z" fill="#3483fa"/>
                             <path d="M2 12H10V14H2V12Z" fill="#3483fa"/>
                         </svg>
-                        Cupón 20% OFF
+                        Envío gratis
                     </span>
                 </div>
                 <div class="product-actions">
