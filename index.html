@@ -42,6 +42,14 @@
         .product-image-container {
             position: relative;
             flex-shrink: 0;
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
         .product-number {
@@ -62,11 +70,10 @@
         }
 
         .product-image {
-            width: 100px;
-            height: 100px;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             background-color: #fff;
-            border-radius: 4px;
         }
 
         .cart-button {
@@ -174,6 +181,7 @@
             display: flex;
             gap: 6px;
             margin-top: 5px;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -185,6 +193,8 @@
             border: none;
             transition: all 0.2s ease;
             text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -210,15 +220,43 @@
             height: 14px;
             display: inline-block;
         }
+
+        .controls-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-control {
+            flex: 1;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+
+        .btn-outlined {
+            background-color: transparent;
+            border: 1px solid #3483fa;
+            color: #3483fa;
+        }
+
+        .btn-outlined:hover {
+            background-color: rgba(65, 137, 230, 0.05);
+        }
     </style>
 </head>
 <body>
     <div class="product-list">
         <!-- Producto 1 - iPhone 14 -->
-        <a href="https://www.mercadolibre.com.ar/apple-iphone-14-128-gb/p/MLA19839058" class="product-item">
+        <a href="meli://item?id=MLA19839058" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">1</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_653524-MLA69459850539_052023-F.webp" alt="Apple iPhone 14 128 GB" class="product-image">
+                <img src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14.jpg" alt="Apple iPhone 14 128 GB" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -251,10 +289,10 @@
         </a>
 
         <!-- Producto 2 - Samsung Galaxy S24 -->
-        <a href="https://www.mercadolibre.com.ar/samsung-galaxy-s24/p/MLA1039976090" class="product-item">
+        <a href="meli://item?id=MLA1039976090" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">2</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_934830-MLA73683265949_122023-F.webp" alt="Samsung Galaxy S24" class="product-image">
+                <img src="https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s24-5g-sm-s921.jpg" alt="Samsung Galaxy S24" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -288,10 +326,10 @@
         </a>
 
         <!-- Producto 3 - Notebook Lenovo -->
-        <a href="https://www.mercadolibre.com.ar/notebook-lenovo-ideapad-3/p/MLA19058932" class="product-item">
+        <a href="meli://item?id=MLA19058932" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">3</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_682171-MLU69733188248_052023-F.webp" alt="Notebook Lenovo IdeaPad 3" class="product-image">
+                <img src="https://m.media-amazon.com/images/I/71S4sIPFvBL._AC_SL1500_.jpg" alt="Notebook Lenovo IdeaPad 3" class="product-image">
                 <div class="badge-presenting">Presentando</div>
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -326,10 +364,10 @@
         </a>
 
         <!-- Producto 4 - Auriculares Sony -->
-        <a href="https://www.mercadolibre.com.ar/auriculares-sony-wh-1000xm5/p/MLA22977329" class="product-item">
+        <a href="meli://item?id=MLA22977329" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">4</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_947945-MLA69875414695_062023-F.webp" alt="Auriculares Sony WH-1000XM5" class="product-image">
+                <img src="https://www.sony.com.ar/image/6145c1d32e6ac8e63a46c912dc33c5bb?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF" alt="Auriculares Sony WH-1000XM5" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -363,10 +401,10 @@
         </a>
 
         <!-- Producto 5 - Smart TV Samsung -->
-        <a href="https://www.mercadolibre.com.ar/smart-tv-samsung-crystal-uhd-4k-55/p/MLA18661969" class="product-item">
+        <a href="meli://item?id=MLA18661969" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">5</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_775590-MLA73449409936_122023-F.webp" alt="Smart TV Samsung Crystal UHD 4K 55" class="product-image">
+                <img src="https://image-us.samsung.com/SamsungUS/home/television-home-theater/tvs/qled-4k-tvs/07152024/UN85CU8000FXZA-S_COM_Version_1_V01.jpg" alt="Smart TV Samsung Crystal UHD 4K 55" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -399,10 +437,10 @@
         </a>
 
         <!-- Producto 6 - PlayStation 5 -->
-        <a href="https://www.mercadolibre.com.ar/consola-sony-playstation-5/p/MLA15983189" class="product-item">
+        <a href="meli://item?id=MLA15983189" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">6</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_795590-MLA46516512347_062021-F.webp" alt="PlayStation 5" class="product-image">
+                <img src="https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$" alt="PlayStation 5" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -436,10 +474,10 @@
         </a>
 
         <!-- Producto 7 - Apple Watch -->
-        <a href="https://www.mercadolibre.com.ar/apple-watch-series-9/p/MLA26809522" class="product-item">
+        <a href="meli://item?id=MLA26809522" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">7</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_749149-MLA71783088835_092023-F.webp" alt="Apple Watch Series 9" class="product-image">
+                <img src="https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/apple-watch-series-9.png" alt="Apple Watch Series 9" class="product-image">
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 1L1 3.5V13.5C1 14.3 1.7 15 2.5 15H13.5C14.3 15 15 14.3 15 13.5V3.5L13 1H3Z" stroke="#3483fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -473,10 +511,10 @@
         </a>
 
         <!-- Producto 8 - Tablet Samsung -->
-        <a href="https://www.mercadolibre.com.ar/tablet-samsung-galaxy-tab-s9/p/MLA26612871" class="product-item">
+        <a href="meli://item?id=MLA26612871" class="product-item">
             <div class="product-image-container">
                 <div class="product-number">8</div>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_932033-MLA71025511802_082023-F.webp" alt="Tablet Samsung Galaxy Tab S9" class="product-image">
+                <img src="https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-tab-s9.jpg" alt="Tablet Samsung Galaxy Tab S9" class="product-image">
                 <div class="badge-presenting">Presentando</div>
                 <button class="cart-button" onclick="event.preventDefault(); alert('Agregado al carrito');">
                     <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -509,6 +547,11 @@
                 </div>
             </div>
         </a>
+
+        <div class="controls-container">
+            <button class="btn btn-outlined btn-control" onclick="window.postMessage(JSON.stringify({type: 'PLAYER.PAUSE'}), '*')">Pausar</button>
+            <button class="btn btn-primary btn-control" onclick="window.postMessage(JSON.stringify({type: 'PLAYER.PLAY'}), '*')">Reproducir</button>
+        </div>
     </div>
 </body>
 </html>
