@@ -612,8 +612,6 @@ webView.setBackgroundColor(Color.TRANSPARENT)
 
 ---
 
-## 📄 License
+## 📄 License.
 
-This integration guide is part of the Live Commerce POC project.
-
-**Created with 💕 by your favorite coding assistant**
+**Created with 💕**
