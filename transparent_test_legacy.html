@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView API 23 - Ultra Smooth Fixed</title>
+    <style>
+        /* CSS BLINDADO PARA EVITAR PARPADEOS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            background-color: transparent !important;
+            height: 100%;
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+
+        /* POSICIONAMIENTO */
+        .layout-top { position: absolute; top: 20px; left: 20px; z-index: 10; }
+        .layout-bottom-left { position: absolute; top: 120px; left: 20px; }
+        .layout-right { position: absolute; right: 20px; top: 120px; }
+
+        /* COMPONENTES - ESTADO BASE (INVISIBLE TOTAL) */
+        .brand-follow-card, .item-card, .reward-badge {
+            display: none; /* Controlado por JS */
+            visibility: hidden; /* Evita el parpadeo inicial */
+            opacity: 0;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+        /* BRAND CARD */
+        .brand-follow-card {
+            display: none;
+            background-color: rgba(96, 96, 96, 0.75);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 8px 15px;
+            border-radius: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-spacing: 0;
+        }
+
+        .brand-follow-card__logo-cell { display: table-cell; vertical-align: middle; }
+        .brand-follow-card__logo {
+            width: 40px; height: 40px; border-radius: 50%;
+            background-color: #FFFFFF; overflow: hidden; text-align: center;
+        }
+        .brand-follow-card__logo svg { margin-top: 5px; }
+
+        .brand-follow-card__info-cell {
+            display: table-cell; vertical-align: middle;
+            padding: 0 15px 0 10px; white-space: nowrap;
+        }
+
+        .brand-follow-card__name { color: #FFFFFF; font-size: 14px; font-weight: 600; line-height: 1.2; }
+        .brand-follow-card__verified {
+            display: inline-block; width: 14px; height: 14px; background-color: #5B8DF6;
+            border-radius: 50%; margin-left: 4px; position: relative; vertical-align: middle;
+        }
+        .brand-follow-card__verified::after {
+            content: '✓'; color: #FFFFFF; font-size: 9px; position: absolute; top: 1px; left: 3px;
+        }
+        .brand-follow-card__followers { color: rgba(255, 255, 255, 0.85); font-size: 11px; }
+
+        .brand-follow-card__btn-cell { display: table-cell; vertical-align: middle; }
+        .brand-follow-card__button {
+            background-color: #5B8DF6; color: #FFFFFF; border: none;
+            padding: 8px 18px; border-radius: 20px; font-size: 12px; font-weight: 600;
+        }
+
+        /* ITEM CARD */
+        .item-card {
+            background-color: #FFFFFF; border-radius: 12px; overflow: hidden;
+            width: 180px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            -webkit-flex-direction: column; flex-direction: column;
+        }
+
+        .item-card__image-container { position: relative; width: 100%; height: 0; padding-top: 100%; background-color: #F5F5F5; }
+        .item-card__image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .item-card__badge {
+            position: absolute; top: 12px; left: 12px; background-color: rgba(80, 80, 80, 0.7);
+            color: #FFFFFF; padding: 4px 8px; border-radius: 6px; font-size: 12px; z-index: 2;
+        }
+        .item-card__content { padding: 12px; }
+        .item-card__original-price { color: #666666; font-size: 10px; text-decoration: line-through; }
+        .item-card__current-price { color: #000000; font-size: 14px; font-weight: 700; }
+        .item-card__discount {
+            color: #00A650; background-color: rgba(0, 166, 80, 0.1);
+            font-size: 10px; font-weight: 700; padding: 2px 5px; border-radius: 4px; margin-left: 5px;
+        }
+        .item-card__cta-button {
+            width: 100%; background-color: #5B8DF6; color: #FFFFFF; border: none;
+            padding: 10px; border-radius: 6px; margin-top: 10px; font-weight: 600;
+        }
+
+        /* EXPLORE BUTTON (Siempre visible) */
+        .explore-button {
+            display: -webkit-inline-flex; display: inline-flex; -webkit-align-items: center; align-items: center;
+            background-color: rgba(80, 80, 80, 0.7); color: #FFFFFF; padding: 4px;
+            border-radius: 8px 0 0 8px; border: none; margin-right: -20px;
+        }
+        .explore-button__icon {
+            width: 28px; height: 28px; background-color: #5B8DF6; border-radius: 6px;
+            display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center;
+            -webkit-align-items: center; align-items: center;
+        }
+        .explore-button span { margin: 0 8px; font-size: 13px; font-weight: 600; }
+
+        /* REWARD BADGE */
+        .reward-badge {
+            -webkit-flex-direction: column; flex-direction: column;
+            -webkit-align-items: center; align-items: center;
+        }
+        .reward-badge__icon-container {
+            width: 60px; height: 60px; background: #F59E0B; border-radius: 12px;
+            display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center;
+            -webkit-align-items: center; align-items: center; border: 3px solid #FCD34D;
+        }
+        .reward-badge__icon-inner {
+            width: 42px; height: 42px; background: #7C3AED; border-radius: 10px;
+            display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center;
+            -webkit-align-items: center; align-items: center;
+        }
+        .reward-badge__points {
+            background: #FCD34D; color: #000000; padding: 6px 16px; border-radius: 16px;
+            font-size: 12px; font-weight: 700; margin-top: -10px; border: 2px solid #F59E0B;
+        }
+
+        /* -----------------------------------------------------------
+           ANIMACIONES SIN PARPADEO (HARDWARE ACCELERATED)
+        ----------------------------------------------------------- */
+        
+        /* ENTRADA DESDE IZQUIERDA */
+        @-webkit-keyframes smoothFadeInLeft {
+            0% { opacity: 0; -webkit-transform: translate3d(-40px, 0, 0); }
+            100% { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
+        }
+        /* SALIDA HACIA IZQUIERDA */
+        @-webkit-keyframes smoothFadeOutLeft {
+            0% { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
+            100% { opacity: 0; -webkit-transform: translate3d(-40px, 0, 0); }
+        }
+
+        /* ENTRADA DESDE DERECHA (REWARD) */
+        @-webkit-keyframes smoothFadeInRight {
+            0% { opacity: 0; -webkit-transform: translate3d(40px, 0, 0); }
+            100% { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
+        }
+        /* SALIDA HACIA DERECHA (REWARD) */
+        @-webkit-keyframes smoothFadeOutRight {
+            0% { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
+            100% { opacity: 0; -webkit-transform: translate3d(40px, 0, 0); }
+        }
+
+        /* CLASES ACTIVAS - Usamos cubic-bezier para suavidad total */
+        .component-visible {
+            visibility: visible !important;
+            opacity: 1 !important;
+            -webkit-animation: smoothFadeInLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+        .component-hidden {
+            -webkit-animation: smoothFadeOutLeft 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+        }
+
+        /* REWARD BADGE OVERRIDE */
+        #rewardBadge.component-visible {
+            -webkit-animation: smoothFadeInRight 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+        #rewardBadge.component-hidden {
+            -webkit-animation: smoothFadeOutRight 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="layout-top">
+            <div id="brandFollowCard" class="brand-follow-card">
+                <div class="brand-follow-card__logo-cell">
+                    <div class="brand-follow-card__logo">
+                        <svg viewBox="0 0 100 100" width="30" height="30"><path d="M50,20 L30,35 L45,35 L25,50 L45,50 L25,70 L50,50 L35,50 L55,35 L40,35 Z" fill="black"/></svg>
+                    </div>
+                </div>
+                <div class="brand-follow-card__info-cell">
+                    <div class="brand-follow-card__name">Adidas <span class="brand-follow-card__verified"></span></div>
+                    <div class="brand-follow-card__followers">+12 mil seguidores</div>
+                </div>
+                <div class="brand-follow-card__btn-cell">
+                    <button class="brand-follow-card__button" id="followBtn">Seguir</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout-right" style="top: 20px;">
+            <button class="explore-button" id="exploreBtn">
+                <div class="explore-button__icon">🏠</div>
+                <span>Explorar ›</span>
+            </button>
+        </div>
+
+        <div class="layout-bottom-left">
+            <div id="itemCard" class="item-card">
+                <div class="item-card__image-container">
+                    <span class="item-card__badge">3</span>
+                    <img class="item-card__image" id="itemImage" src="https://almacendelingeniero.com/wp-content/uploads/2023/03/Royal-Lo-Cut-Croydon-521-59-7-Negro.png" />
+                </div>
+                <div class="item-card__content">
+                    <div class="item-card__original-price">$ 111.000</div>
+                    <div style="margin: 2px 0;">
+                        <span class="item-card__current-price" id="newPrice">$ 880.000</span>
+                        <span class="item-card__discount" id="discountTag">10% OFF</span>
+                    </div>
+                    <button class="item-card__cta-button" id="buyBtn">Comprar ahora</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout-right">
+            <div id="rewardBadge" class="reward-badge">
+                <div class="reward-badge__icon-container">
+                    <div class="reward-badge__icon-inner">⭐</div>
+                </div>
+                <div class="reward-badge__points" id="rewardPoints">+ 20</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        var EventBus = {
+            timers: {},
+            
+            sendToNative: function(event) {
+                var msg = JSON.stringify(event);
+                if (window.Android && window.Android.postMessage) {
+                    window.Android.postMessage(msg);
+                }
+            },
+
+            showComponent: function(config) {
+                var id = config.component;
+                var el = document.getElementById(id);
+                if (!el) return;
+
+                if (this.timers[id]) clearTimeout(this.timers[id]);
+                
+                // 1. Limpiar clases de animación anteriores
+                el.className = el.className.replace('component-hidden', '').replace('component-visible', '').trim();
+                
+                // 2. Activar el DISPLAY pero mantenerlo invisible (visibility: hidden)
+                if (id === 'brandFollowCard') el.style.display = 'table';
+                else el.style.display = '-webkit-flex';
+                
+                // 3. FORZAR REFLOW (Truco crítico para evitar parpadeo)
+                // Al leer offsetHeight, obligamos al motor a renderizar el display: flex
+                // antes de aplicar la clase de animación.
+                var forceReflow = el.offsetHeight;
+
+                // 4. Aplicar la animación tras un breve respiro para el motor WebKit
+                setTimeout(function() {
+                    el.className += ' component-visible';
+                }, 100);
+
+                if (config.duration > 0) {
+                    var self = this;
+                    this.timers[id] = setTimeout(function() {
+                        self.hideComponent(id);
+                    }, config.duration);
+                }
+            },
+
+            hideComponent: function(id) {
+                var el = document.getElementById(id);
+                if (!el) return;
+
+                el.className = el.className.replace('component-visible', '').trim();
+                el.className += ' component-hidden';
+
+                setTimeout(function() {
+                    el.style.display = 'none';
+                    el.style.visibility = 'hidden'; // Volver al estado base invisible
+                    el.className = el.className.replace('component-hidden', '').trim();
+                }, 650);
+            }
+        };
+
+        // Handlers
+        document.getElementById('followBtn').onclick = function() { EventBus.sendToNative({type:'follow'}); };
+        document.getElementById('buyBtn').onclick = function() { EventBus.sendToNative({type:'buy'}); };
+        document.getElementById('exploreBtn').onclick = function() { EventBus.sendToNative({type:'explore'}); };
+
+        window.onload = function() {
+            EventBus.sendToNative({type:'ready'});
+        };
+
+        window.addEventListener('message', function(e) {
+            try {
+                var msg = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+                if (msg.type === 'showComponent') EventBus.showComponent(msg.data);
+                if (msg.type === 'hideComponent') EventBus.hideComponent(msg.data.component);
+            } catch(err) {}
+        });
+    </script>
+</body>
+</html>
