@@ -60,36 +60,42 @@
             min-width: 100%;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         main {
             position: relative;
             width: 100%;
             height: 100vh;
-            padding: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .layout-top {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
+            top: 10px;
+            left: 10px;
+            right: 10px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 16px;
+            gap: 10px;
+            z-index: 100;
+            flex-wrap: nowrap;
         }
 
         .layout-bottom-left {
             position: absolute;
-            top: 120px;
-            left: 20px;
+            top: 100px;
+            left: 10px;
         }
 
         .layout-right {
             position: absolute;
-            right: 20px;
-            top: 120px;
+            right: 10px;
+            top: 100px;
         }
 
         .brand-follow-card {
@@ -99,10 +105,11 @@
             background-color: var(--color-background-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            padding: 8px var(--spacing-md);
+            padding: 6px var(--spacing-md);
             border-radius: var(--border-radius-card);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             width: fit-content;
+            max-width: calc(100vw - 160px);
         }
 
         .brand-follow-card__left {
@@ -316,14 +323,13 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             color: var(--color-white);
-            padding: var(--spacing-xs);
-            border-radius: var(--border-radius-badge) 0 0 var(--border-radius-badge);
-            font-size: var(--font-size-base);
+            padding: 6px 12px;
+            border-radius: var(--border-radius-badge);
+            font-size: var(--font-size-md);
             font-weight: var(--font-weight-semibold);
             border: none;
             cursor: pointer;
             transition: all 0.2s ease;
-            margin-right: -20px;
         }
 
         .explore-button:hover {
