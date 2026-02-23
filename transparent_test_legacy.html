@@ -27,6 +27,22 @@
             padding: 20px;
         }
 
+        /* Let transparent areas pass touches to native layers below */
+        html, body, main, .layout-top, .layout-bottom-left, .layout-right {
+            pointer-events: none;
+        }
+
+        .brand-follow-card,
+        .item-card,
+        .reward-badge,
+        .explore-button,
+        .brand-follow-card *,
+        .item-card *,
+        .reward-badge *,
+        .explore-button * {
+            pointer-events: auto;
+        }
+
         /* POSICIONAMIENTO */
         .layout-top { position: absolute; top: 20px; left: 20px; z-index: 10; }
         .layout-bottom-left { position: absolute; top: 120px; left: 20px; }
