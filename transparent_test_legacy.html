@@ -266,6 +266,21 @@
                 }
             },
 
+            reportRegion: function(id, el) {
+                var dpr = window.devicePixelRatio || 1;
+                var bcr = el.getBoundingClientRect();
+                this.sendToNative({
+                    type: 'componentShown',
+                    component: id,
+                    rect: {
+                        x: Math.round(bcr.left * dpr),
+                        y: Math.round(bcr.top * dpr),
+                        w: Math.round(bcr.width * dpr),
+                        h: Math.round(bcr.height * dpr)
+                    }
+                });
+            },
+
             showComponent: function(config) {
                 var id = config.component;
                 var el = document.getElementById(id);
@@ -285,7 +300,10 @@
                 // antes de aplicar la clase de animación.
                 var forceReflow = el.offsetHeight;
 
-                // 4. Aplicar la animación tras un breve respiro para el motor WebKit
+                // 4. Reportar región antes de la animación (sin transforms aplicados aún)
+                EventBus.reportRegion(id, el);
+
+                // 5. Aplicar la animación tras un breve respiro para el motor WebKit
                 setTimeout(function() {
                     el.className += ' component-visible';
                 }, 100);
@@ -309,6 +327,8 @@
                     el.style.display = 'none';
                     el.style.visibility = 'hidden'; // Volver al estado base invisible
                     el.className = el.className.replace('component-hidden', '').trim();
+                    // Notificar a native que la región ya no está activa
+                    EventBus.sendToNative({ type: 'componentHidden', component: id });
                 }, 650);
             }
         };
@@ -320,6 +340,11 @@
 
         window.onload = function() {
             EventBus.sendToNative({type:'ready'});
+            // Report explore button region since it is always visible
+            setTimeout(function() {
+                var exploreEl = document.getElementById('exploreBtn');
+                if (exploreEl) EventBus.reportRegion('exploreBtn', exploreEl);
+            }, 100);
         };
 
         window.addEventListener('message', function(e) {
